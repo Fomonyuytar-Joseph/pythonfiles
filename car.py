@@ -6,15 +6,51 @@ class Car():
         self.odometer_reading=0
 
     def get_descriptive_name(self):
-        long_name=str(self.year)+' '+self.make+' '+self.model
+        long_name= str(self.year)+' '+self.make+' '+self.model
         return long_name.title()
 
     def read_odometer(self):
         print('the car has'+ str(self.odometer_reading)+' miles on it')
 
-my_new_car=Car('audi','a4','2016')
+
+class Battery():
+    def __init__(self,battery_size=70):
+        self.battery_size=battery_size
+
+    def describe_battery(self):
+        """Print a statement describing the battery size."""
+        print("this car has a "+ str(self.battery_size)+"-kwh  battery")
+
+    def get_range(self):
+
+        if self.battery_size ==70:
+            range=240
+        elif self.battery_size == 85:
+            range=270
+        message="the car can go approximately "+ str(range)
+        message+=' miles on a full charge'
+        print(message)
+
+
+
+
+class ElectricCar(Car):
+    def __init__(self,make,model ,year):
+        """Initialize attributes of the parent class."""
+        super().__init__(make,model,year)
+        self.battery=Battery()
+
+
+
+
+my_tesla=ElectricCar('tesla','model s',"2016")
+my_new_car=Car('audi','a4',"2016")
+my_tesla.battery.describe_battery()
+my_tesla.battery.get_range()
+print(my_tesla.get_descriptive_name())
 print(my_new_car.get_descriptive_name())
 my_new_car.read_odometer()
+print('hello')
         
 
 
